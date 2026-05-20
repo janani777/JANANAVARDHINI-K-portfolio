@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jananavardhini K — Mechatronics Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0e0f;--bg2:#131618;--bg3:#1a1e20;--card:#181c1e;
+  --border:#252b2e;--border2:#2e363a;--text:#e8e4dc;--muted:#7a8a8f;
+  --accent:#c8a97e;--accent2:#7eb8c8;--accent3:#a8c87e;--red:#c87e7e;
+  --serif:'DM Serif Display',serif;--mono:'DM Mono',monospace;--sans:'Manrope',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(12,14,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--mono);font-size:.85rem;color:var(--accent);letter-spacing:.08em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 4rem;position:relative;border-bottom:1px solid var(--border);}
+.hero-tag{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
+.hero-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);line-height:1.05;font-weight:400;margin-bottom:1rem;max-width:14ch;}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:42ch;margin-bottom:2.5rem;line-height:1.8;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.7rem 1.6rem;border-radius:2px;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-decoration:none;transition:all .2s;cursor:pointer;border:none;}
+.btn-primary{background:var(--accent);color:#0c0e0f;font-weight:500}
+.btn-primary:hover{background:#d4b990}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border2)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);}
+.stat-val{font-family:var(--serif);font-size:2rem;color:var(--accent)}
+.stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+section{padding:6rem 3rem;border-bottom:1px solid var(--border);position:relative;z-index:1}
+.section-tag{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:3rem;}
+.section-title span{color:var(--accent)}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1.2rem;font-size:.95rem}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-skills{display:flex;flex-direction:column;gap:.75rem}
+.skill-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.skill-name{font-size:.85rem;color:var(--text)}
+.skill-bar-wrap{width:50%;height:2px;background:var(--border2);border-radius:1px}
+.skill-bar{height:100%;background:var(--accent);border-radius:1px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+
+/* FILTER TABS */
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.filter-btn{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid var(--border2);border-radius:2px;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.filter-btn:hover{color:var(--text);border-color:var(--text)}
+.filter-btn.active{background:var(--accent);color:#0c0e0f;border-color:var(--accent)}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem;transition:border-color .25s,transform .25s,opacity .3s;position:relative;overflow:hidden;}
+.project-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(200,169,126,.04));pointer-events:none;}
+.project-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.project-card.hidden{display:none}
+.project-number{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.1em;margin-bottom:1.25rem;}
+.project-title{font-family:var(--serif);font-size:1.25rem;margin-bottom:.5rem;line-height:1.2;}
+.project-desc{font-size:.83rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;padding:.25rem .6rem;border:1px solid var(--border2);border-radius:2px;color:var(--muted);text-transform:uppercase;}
+.tag.accent{border-color:rgba(200,169,126,.4);color:var(--accent)}
+.tag.blue{border-color:rgba(126,184,200,.4);color:var(--accent2)}
+.tag.green{border-color:rgba(168,200,126,.4);color:var(--accent3)}
+.tag.red{border-color:rgba(200,126,126,.4);color:var(--red)}
+.project-status{position:absolute;top:1.25rem;right:1.25rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;padding:.2rem .5rem;border-radius:2px;}
+.status-ongoing{background:rgba(168,200,126,.12);color:var(--accent3);border:1px solid rgba(168,200,126,.3)}
+.status-award{background:rgba(200,169,126,.12);color:var(--accent);border:1px solid rgba(200,169,126,.3)}
+.status-published{background:rgba(126,184,200,.12);color:var(--accent2);border:1px solid rgba(126,184,200,.3)}
+
+.exp-list{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:180px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border);}
+.exp-meta{padding-top:.2rem}
+.exp-date{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-bottom:.4rem}
+.exp-company{font-size:.8rem;color:var(--accent);font-weight:500}
+.exp-title{font-family:var(--serif);font-size:1.2rem;margin-bottom:.5rem}
+.exp-desc{font-size:.85rem;color:var(--muted);line-height:1.8}
+.exp-bullets{list-style:none;margin-top:.75rem;display:flex;flex-direction:column;gap:.4rem}
+.exp-bullets li{font-size:.82rem;color:var(--muted);padding-left:1rem;position:relative;line-height:1.7}
+.exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--border2)}
+
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem}
+.edu-degree{font-family:var(--serif);font-size:1.2rem;margin-bottom:.3rem}
+.edu-school{font-size:.85rem;color:var(--accent);margin-bottom:.25rem}
+.edu-year{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:1rem}
+.edu-cgpa{display:inline-block;font-family:var(--mono);font-size:.75rem;padding:.3rem .75rem;border:1px solid var(--border2);border-radius:2px;color:var(--text);margin-bottom:1rem;}
+.edu-notes{font-size:.8rem;color:var(--muted);line-height:1.8}
+
+#contact{background:var(--bg2)}
+.contact-inner{max-width:600px}
+.contact-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1rem;line-height:1.1}
+.contact-sub{color:var(--muted);margin-bottom:2.5rem;font-size:.95rem}
+.contact-links{display:flex;flex-direction:column;gap:.75rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);transition:border-color .2s,background .2s;font-size:.9rem;}
+.contact-link:hover{border-color:var(--accent);background:rgba(200,169,126,.04)}
+.contact-link-icon{font-family:var(--mono);font-size:.7rem;color:var(--muted);width:60px}
+.contact-link-val{color:var(--muted);font-size:.85rem}
+
+footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);}
+.footer-copy{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  #hero{padding:7rem 1.5rem 3rem}
+  section{padding:4rem 1.5rem}
+  .about-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr;gap:.5rem}
+  .edu-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .hero-stats{gap:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">JK_portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-tag">Mechatronics Engineer</div>
+  <h1>Janana&shy;vardhini <em>K.</em></h1>
+  <p class="hero-sub">Building robots, autonomous systems, and mechanical solutions — at the intersection of hardware, software, and design.</p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-val">10+</div><div class="stat-label">Projects</div></div>
+    <div><div class="stat-val">8.5</div><div class="stat-label">CGPA — M.Tech</div></div>
+    <div><div class="stat-val">1</div><div class="stat-label">Conference Paper</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-tag">01 — About</div>
+  <div class="section-title">Engineer by <span>training,</span><br>builder by instinct</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>M.Tech Mechatronics student at VIT University</strong> (graduating 2027), with a background in Mechanical Engineering from B.N.M. Institute of Technology, Bengaluru.</p>
+      <p>My work spans <strong>autonomous robotics</strong>, computer vision, AI-assisted systems, V2V communication, and mechanical design. I'm driven by problems that sit at the edge of mechanical and computational thinking.</p>
+      <p>Currently building a <strong>Series Elastic Actuator</strong> model and learning ROS. Previously interned at Toyota Industries Engine India on JIT and lean manufacturing workflows.</p>
+    </div>
+    <div class="about-skills reveal">
+      <div class="skill-row"><span class="skill-name">SolidWorks / Fusion 360</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="90"></div></div></div>
+      <div class="skill-row"><span class="skill-name">ANSYS (FEA / CFD)</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="82"></div></div></div>
+      <div class="skill-row"><span class="skill-name">MATLAB / Simulink</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="78"></div></div></div>
+      <div class="skill-row"><span class="skill-name">C / C++</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="72"></div></div></div>
+      <div class="skill-row"><span class="skill-name">Computer Vision</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="68"></div></div></div>
+      <div class="skill-row"><span class="skill-name">ROS (Learning)</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="35"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-tag">02 — Projects</div>
+  <div class="section-title">Things I've <span>built</span></div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+    <button class="filter-btn" onclick="filterProjects('robotics')">Robotics</button>
+    <button class="filter-btn" onclick="filterProjects('vision')">Computer Vision / AI</button>
+    <button class="filter-btn" onclick="filterProjects('mechanical')">Mechanical</button>
+    <button class="filter-btn" onclick="filterProjects('research')">Research</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card reveal" data-cat="robotics">
+      <div class="project-number">01</div>
+      <div class="project-title">PIEZOBOT — Autonomous Inspection Robot</div>
+      <div class="project-desc">Autonomous robot for industrial inspection using piezoelectric sensing. Integrated sensor fusion and path-planning algorithms for real-time obstacle avoidance in constrained environments.</div>
+      <div class="project-tags">
+        <span class="tag accent">Robotics</span>
+        <span class="tag blue">Sensor Fusion</span>
+        <span class="tag">Path Planning</span>
+        <span class="tag">Piezoelectric</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="vision">
+      <div class="project-number">02</div>
+      <div class="project-title">Fruit Sorting System</div>
+      <div class="project-desc">Automated sorting pipeline using an HSI camera and image classification to detect and categorize fruit quality in real time. Deployed with a mechanical sorting actuator.</div>
+      <div class="project-tags">
+        <span class="tag blue">Computer Vision</span>
+        <span class="tag blue">HSI Camera</span>
+        <span class="tag">Classification</span>
+        <span class="tag accent">Mechatronics</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="robotics">
+      <span class="project-status status-ongoing">Ongoing</span>
+      <div class="project-number">03</div>
+      <div class="project-title">Series Elastic Actuator — Dynamic Modeling</div>
+      <div class="project-desc">Mathematical models and Simulink simulations for a Series Elastic Actuator to study compliance control in robotic joints.</div>
+      <div class="project-tags">
+        <span class="tag">MATLAB</span>
+        <span class="tag">Simulink</span>
+        <span class="tag accent">Robotics</span>
+        <span class="tag">Control Systems</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="vision">
+      <div class="project-number">04</div>
+      <div class="project-title">Smart Cart Simulation</div>
+      <div class="project-desc">AI-powered cart system that automatically bills products using computer vision and provides anti-theft protection through real-time item detection and tracking.</div>
+      <div class="project-tags">
+        <span class="tag blue">AI / CV</span>
+        <span class="tag">Object Detection</span>
+        <span class="tag green">Anti-Theft</span>
+        <span class="tag">Simulation</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="mechanical">
+      <div class="project-number">05</div>
+      <div class="project-title">Solar Powered Automated Conveyor System</div>
+      <div class="project-desc">Design and analysis of a solar-powered conveyor system for sustainable automated material handling, focusing on energy efficiency and mechanical reliability.</div>
+      <div class="project-tags">
+        <span class="tag green">Solar Energy</span>
+        <span class="tag accent">Mechanical Design</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Sustainable</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="robotics">
+      <div class="project-number">06</div>
+      <div class="project-title">Smart Terrain Adaptive Mobile Robot</div>
+      <div class="project-desc">Mobile robot with obstacle detection and adaptive locomotion across varying terrain types, with built-in energy optimization to maximize operational runtime.</div>
+      <div class="project-tags">
+        <span class="tag accent">Robotics</span>
+        <span class="tag">Obstacle Detection</span>
+        <span class="tag green">Energy Optimization</span>
+        <span class="tag blue">Adaptive</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="robotics vision">
+      <div class="project-number">07</div>
+      <div class="project-title">AI Voice Controlled Robotic Arm</div>
+      <div class="project-desc">Voice-commanded robotic arm designed to assist disabled patients with feeding tasks. Combines NLP-based voice recognition with precise actuator control for accessible healthcare robotics.</div>
+      <div class="project-tags">
+        <span class="tag blue">AI / NLP</span>
+        <span class="tag accent">Robotics</span>
+        <span class="tag red">Healthcare</span>
+        <span class="tag">Voice Control</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="mechanical">
+      <div class="project-number">08</div>
+      <div class="project-title">V2V Communication — Hairpin Bend Safety</div>
+      <div class="project-desc">Vehicle-to-Vehicle communication system that provides real-time safety warnings on hairpin bends, reducing collision risk through inter-vehicle data exchange and proximity alerts.</div>
+      <div class="project-tags">
+        <span class="tag blue">V2V Comms</span>
+        <span class="tag red">Safety System</span>
+        <span class="tag">Embedded</span>
+        <span class="tag">IoT</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="mechanical">
+      <span class="project-status status-award">Best Presenter</span>
+      <div class="project-number">09</div>
+      <div class="project-title">Hybrid Cycle with Battery Cooling System</div>
+      <div class="project-desc">Designed and prototyped a hybrid bicycle integrating an electric drivetrain with a passive battery thermal management system. Awarded Best Presenter at department final-year showcase.</div>
+      <div class="project-tags">
+        <span class="tag green">Mechanical Design</span>
+        <span class="tag">Thermal Management</span>
+        <span class="tag accent">EV</span>
+        <span class="tag">Prototype</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="research">
+      <span class="project-status status-published">Conference Paper</span>
+      <div class="project-number">10</div>
+      <div class="project-title">Deformation Behavior of High Entropy Alloys</div>
+      <div class="project-desc">Research presented at the International Conference on Advanced Materials and Fluid Mechanics. Analyzed deformation mechanics of HEAs under varying load conditions using FEM and ANSYS.</div>
+      <div class="project-tags">
+        <span class="tag blue">Research</span>
+        <span class="tag green">Materials Science</span>
+        <span class="tag">FEM / ANSYS</span>
+        <span class="tag accent">Published</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-tag">03 — Experience</div>
+  <div class="section-title">Where I've <span>worked</span></div>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">Aug 2023 – Sep 2023</div>
+        <div class="exp-company">Toyota Industries Engine India</div>
+      </div>
+      <div>
+        <div class="exp-title">Supply Chain Intern</div>
+        <div class="exp-desc">Worked within a large-scale automotive manufacturing supply chain, gaining hands-on exposure to ERP systems, lean practices, and vendor coordination.</div>
+        <ul class="exp-bullets">
+          <li>Coordinated procurement and logistics with vendors and internal teams for on-time delivery</li>
+          <li>Monitored ERP-based inventory tracking systems, improving stock visibility and reducing manual discrepancies</li>
+          <li>Analysed Just-in-Time (JIT) and lean manufacturing workflows to identify cycle time reduction opportunities</li>
+          <li>Maintained data accuracy across supply chain management software via structured validation protocols</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-tag">04 — Education</div>
+  <div class="section-title">Academic <span>background</span></div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">M.Tech — Mechatronics Engineering</div>
+      <div class="edu-school">VIT University, Vellore</div>
+      <div class="edu-year">2025 – 2027 (Expected)</div>
+      <div class="edu-cgpa">CGPA: 8.5 / 10</div>
+      <div class="edu-notes">Workshops: Green Hydrogen Generation · ANRF-sponsored workshop on Hydrogen Engines for Clean Mobility.<br><br>Projects: PIEZOBOT, Fruit Sorting System, Series Elastic Actuator (ongoing).</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">B.E. — Mechanical Engineering</div>
+      <div class="edu-school">B.N.M. Institute of Technology, Bengaluru</div>
+      <div class="edu-year">Graduated Jun 2024</div>
+      <div class="edu-cgpa">CGPA: 7.2 / 10</div>
+      <div class="edu-notes">Final Year Project: Hybrid Cycle with Battery Cooling System — Best Presenter Award.<br><br>Published: "Deformation Behavior of High Entropy Alloy" at International Conference on Advanced Materials and Fluid Mechanics.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">05 — Contact</div>
+    <div class="contact-title reveal">Let's <em style="font-family:var(--serif);color:var(--accent)">work</em><br>together.</div>
+    <p class="contact-sub reveal">Open to research collaborations, internships, and full-time roles in robotics, mechatronics, and mechanical design.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:jananik68644@gmail.com" class="contact-link">
+        <span class="contact-link-icon">EMAIL</span>
+        <span class="contact-link-val">jananik68644@gmail.com</span>
+      </a>
+      <a href="tel:+919483817070" class="contact-link">
+        <span class="contact-link-icon">PHONE</span>
+        <span class="contact-link-val">+91 94838 17070</span>
+      </a>
+      <a href="https://github.com/YOURUSERNAME" target="_blank" class="contact-link">
+        <span class="contact-link-icon">GITHUB</span>
+        <span class="contact-link-val">github.com/YOURUSERNAME ← update this</span>
+      </a>
+      <a href="https://linkedin.com/in/YOURUSERNAME" target="_blank" class="contact-link">
+        <span class="contact-link-icon">LINKEDIN</span>
+        <span class="contact-link-val">linkedin.com/in/YOURUSERNAME ← update this</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 Jananavardhini K — Built from scratch</div>
+  <div class="footer-copy">Mechatronics · Robotics · Mechanical Design</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => obs.observe(r));
+
+const skillObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+      skillObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.about-skills').forEach(s => skillObs.observe(s));
+
+function filterProjects(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat.includes(cat)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>
